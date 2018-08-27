@@ -4,6 +4,16 @@ step1:
     git status 查看git的文件状态
     git remote rm origin 删除远程 Git 仓库
     git remote add origin https://github.com/sunshine-33/fe8.git 给本地的仓库添加远程地址
+    
 
     git add . 把本地的文件添加到本地仓库
-    git commit -am"imit" 提交到本地仓库
+    git commit -am"init" 提交到本地仓库
+    git push origin master
+
+在本地配置ssh密钥
+ssh-keygen -t rsa -C "594859064@qq.com"
+cd ~ 切换家目录
+cd .ssh
+cat id_rsa.pub
+
+把这个公钥复制到github页面
