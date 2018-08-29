@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+</body>
+<script type="x-template" id="temp">
+    <div>hello {{name}}</div>
+</script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name:'sunshine'
+        },
+        template:'#temp',//如果 Vue 选项中包含渲染(render)函数，该模板将被忽略。
+        render(createElement){
+            return createElement(
+                "ul",{
+                    class:{
+                        bg:true
+                    },
+                    style:{
+                        fontSize:"30px"
+                    },
+                    attrs:{
+                        id:"sun"
+                    }
+                },[
+                    createElement('li',11),
+                    createElement('li',2),
+                    createElement('li',3)
+                ]
+            )
+        }
+    })
+</script>
+</html>
