@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{a}}
+        {{b}}
+        {{obj.name}}
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            a:111,
+            b:222,
+            obj:{
+                name:'sun',
+                age:'18'
+            }
+        },
+    })
+    vm.$watch('obj',function(){
+        alert(this.obj.name)//不弹出因为是一个对象需要深度监听
+    },{
+        deep:true  //对象需要深度监听
+    })
+    document.onclick=function(){
+        vm.obj.name='shine';
+    }
+</script>
+</html>
