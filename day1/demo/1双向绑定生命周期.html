@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <!-- 双向绑定 -->
+    <div id="app">
+        {{ num > 5 ? "yes" : "no" }}
+        <div v-text="num"></div>
+        <div v-html="tml"></div>
+        <input type="text" v-model="num" />   
+        <textarea v-model="num" ></textarea>   
+    </div>
+    <!--
+        生命周期
+        cookie
+        vue
+    -->
+    <div id="app2">
+        {{ msg }}
+        <button id="btn">dom更新</button>
+        <button onclick="change()">更新</button>
+        <button onclick="destroy()">销毁</button>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            num: 10,
+            tml:"<h1>haohaohao</h1>"
+        }
+    })
+    var vm = new Vue({
+        el: '#app2',
+        data: {
+            msg:"hello 33"
+        },
+        beforeCreate(){
+            alert('实例创建前')
+        },
+        created(){
+            alert('实例已经创建完成')
+        },
+        beforeMount(){
+            alert('实例挂载前')
+        },
+        mounted(){
+            alert('实例已经挂载');
+            $('#btn').click(function(){
+                $(this).html('dom已经更新');
+            })
+        },
+        beforeUpdate(){
+            alert('数据更新前')
+        },
+        updated(){
+            alert('数据已经更改')
+        },
+        beforeDestroy(){
+            alert('实例销毁前')
+        },
+        destroyed(){
+            alert('实例已经销毁')
+        }
+    })
+    function change(){
+        vm.msg="111"
+    }
+    function destroy(){
+        vm.$destroy();
+    }
+</script>
+</html>

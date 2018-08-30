@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <sunshine>
+            <div>不替换</div>
+            <div>不替换2</div>
+            <div slot="three">我想替换第三个位置</div>
+            <div slot="two">我想替换第二个位置</div>
+        </sunshine>
+    </div>
+</body>
+<script>
+    Vue.component("sunshine",{//全局组件是component,局部组件是components
+        template:`
+        <div>
+            <slot name="one">第1个位置</slot>
+            <slot name="two">第2个位置</slot>
+            <slot name="three">第3个位置</slot>
+            <slot>我就咬你</slot>
+        </div>
+        `
+    })
+    new Vue({
+        el: '#app'
+    })
+</script>
+</html>

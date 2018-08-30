@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- axios方法 -->
+        <button @click="getSearch">获取数据</button>
+        <ul>
+            <li v-for="item in myData">
+                <h5>{{item.goods_name}}</h5>
+                <img :src="item.goods_thumb" width="100px"/>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            myData:[]
+        },
+        methods:{
+            getSearch:function(data){
+                axios.get('http://h6.duchengjiu.top/shop/api_goods.php').then(res =>{
+                    this.myData=res.data.data;
+                })
+            }
+        }
+    })
+</script>
+</html>

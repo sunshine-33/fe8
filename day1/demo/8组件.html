@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <sun-shine></sun-shine>
+    </div>
+</body>
+<script type="x-template" id="tpl">
+    <div>
+        <h2 @click="change">标题{{msg}}</h2>
+        <ul>
+            <li v-for="val in arr">{{val}}</li>
+        </ul>
+    </div>
+</script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        components:{
+            'sunShine':{//在组件里使用小驼峰sunShine命名，在dom里使用烤串sun-shine方式
+                data(){//在组件的data里边一定要使用return的方式返回一个对象，这是闭包，好处：每个组件不污染，不影响，都是独立的
+                    return {
+                        msg:'hello world!',
+                        arr:['1','2','3']
+                    }
+                },
+                methods:{
+                    change(){
+                        this.msg= "changed"
+                    }
+                },
+                template:"#tpl"
+            }
+            
+        }
+    })
+</script>
+</html>

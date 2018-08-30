@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- jsonp -->
+        百度:<input type="text"  v-model="word" @keyup="jsonp()"/>
+        <ul>
+            <li v-for="item in myData">
+                <a :href="'https://www.baidu.com/s?wd='+item">{{item}}</a>
+            </li>
+        </ul>
+        <!-- get方法 -->
+        github.id:<input type="text"  v-model="uid" />
+        <button @click="getGitUser(uid)">获取指定的git账户信息并展示</button>
+        <h3>姓名：{{user.name}}</h3>
+        <h3>头像：</h3>
+        <img :src="user.avatar_url"  />
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            word:'',
+            myData:[],
+            user:{},
+            uid:''
+        },
+        methods:{
+            jsonp:function(){
+                this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
+                    params:{
+                        wd:this.word
+                    },
+                    jsonp:'cb'
+                }).then(function(res){
+                    this.myData = res.data.s
+                })
+            },
+            getGitUser:function(uid){
+                this.$http.get(`https://api.github.com/users/${uid}`).then(res =>{
+                    this.user=res.data
+                })
+            }
+        }
+    })
+</script>
+</html>

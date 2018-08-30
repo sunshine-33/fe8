@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <ui-button text="保存"></ui-button>
+        <ui-button text="提交"></ui-button>
+        <ui-button text="收藏"></ui-button>
+    </div>
+</body>
+<script>
+    Vue.component("ui-button",{
+        template:"<button class='ui teal button'>{{text}}</button>",
+        props:['text']
+    })
+    new Vue({
+        el: '#app'
+    })
+</script>
+</html>

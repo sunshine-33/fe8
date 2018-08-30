@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 指令 -->
+    <div id="app">
+        <p v-if="seen">现在你看到我了</p>
+        <div v-bind:id="id">data的id是{{ id }}</div>
+        <div :id="id">data的id是{{ id }}</div><!-- v-bind可简写: -->
+        <img :src="imgs" style="width: 100px;" />
+    </div>
+    <div id="app2">
+        {{arr}}
+        <button v-on:click="show">单击</button>
+        <button v-on:mouseover="show">鼠标经过</button>
+        <button v-on:dblclick="show">双击</button>
+        <button v-on:click="add(555)">添加</button>
+        <button @click="add(555)">添加</button><!-- v-on可简写@ -->
+    </div>
+    <div id="app3">
+        <button @click="change">点击</button>
+        <div v-show="flag" style="width: 100px;height: 100px;background: #999;"></div>
+    </div>
+</body>
+<script>
+    let data={
+        msg: 'Hello Vue!',
+        id: "000000",
+        seen:true,
+        imgs: "https://cn.vuejs.org/images/logo.png"
+    }
+    var vm = new Vue({
+        el: '#app',
+        data: data
+    })
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            arr:[0,2,4,6,8]
+        },
+        methods:{
+            show:function(){
+                console.log("看到了")
+            },
+            add:function(i){
+                this.arr.push(i)
+            }
+        }
+    })
+    var vm3 = new Vue({
+        el: '#app3',
+        data: {
+            flag: true
+        },
+        methods:{
+            change(){ //es6
+                this.flag = !this.flag
+            }
+        }
+    })
+</script>
+</html>

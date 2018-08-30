@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <sunshine><!--组件里边的内容默认不显示 需要加个插槽slot-->
+            <ul>
+                <li>22</li>
+                <li>44</li>
+                <li>33</li>
+                <li>44</li>
+            </ul>
+        </sunshine>
+    </div>
+</body>
+<template id="aaa">
+    <div><!--模板必须有一个成对的根标签(div)包着-->
+        <h1>slot开始</h1>
+        <slot>
+            ul-slot的位置
+        </slot>
+    </div>
+</template>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        components:{
+            'sunshine':{
+                template:"#aaa"
+            }
+        }
+    })
+</script>
+</html>

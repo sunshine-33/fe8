@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="div">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{a}}
+        {{b}}
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            a:111,
+            b:222
+        },
+    })
+    vm.$watch('a',function(){//watch监听数据变化
+        this.b=this.a+100
+    })
+    document.onclick=function(){
+        vm.a=333;
+    }
+</script>
+</html>
